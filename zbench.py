@@ -45,9 +45,9 @@ def main(argv):
 	if os.path.isfile(fio) != True:
 		sys.exit("FIO config not specified! " + fio)
 
-	print(zpoolModes)
-	print(devices)
-	print(fio)
+	#print(zpoolModes)
+	#print(devices)
+	#print(fio)
 
 	atime = "-O atime="
 	atimeOpts = ["on ","off "]
@@ -78,13 +78,17 @@ def main(argv):
 						fullCreate += sync + s
 						fullCreate += recSize + r
 						fullCreate += ashift + a2
-						print(fullCreate)
+						#print(fullCreate)
 						os.system(fullCreate + " -f")
 						if os.path.exists("/flash/"):
-							print("fio " + fio)
+							#print("fio " + fio)
 							fioOut = os.popen("fio " + fio)
 							results = fioOut.read()
-							print(results)
+							for line in results:
+								if "read: IOPS=" in line:
+									print("//" + fullCreate)
+									print("\\\\" + line)
+							#print(results)
 						#os.system(destroyCmd)
 
 	os.system(destroyCmd)
