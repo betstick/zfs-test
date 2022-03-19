@@ -33,12 +33,12 @@ def main(argv):
 				else:
 					sys.exit("Device not found: " + d)
 		elif opt == "--fio=":
-			for f in arg:
-				if os.path.isfile(f):
-					print(f)
-					fio = f
-				else:
-					sys.exit("FIO config not found: " + f)
+			#for f in arg:
+			if os.path.isfile(arg):
+				print(arg)
+				fio = arg
+			else:
+				sys.exit("FIO config not found: " + arg)
 
 	if len(zpoolModes) < 1:
 		sys.exit("No modes specified!")
