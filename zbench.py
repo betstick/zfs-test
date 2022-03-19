@@ -79,7 +79,8 @@ def main(argv):
 						fullCreate += ashift + a2
 						#print(fullCreate)
 						os.system(fullCreate + " -f")
-						results = os.popen("fio " + fio)
+						if os.path.exists("/flash/"):
+							results = os.popen("fio " + fio)
 						os.system(destroyCmd)
 
 if __name__ == "__main__":
