@@ -80,6 +80,7 @@ def main(argv):
 						#print(fullCreate)
 						os.system(fullCreate + " -f")
 						if os.path.exists("/flash/"):
+							print("fio " + fio)
 							results = os.popen("fio " + fio)
 						os.system(destroyCmd)
 
