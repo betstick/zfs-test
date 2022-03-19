@@ -35,6 +35,7 @@ def main(argv):
 		elif opt == "--fio=":
 			#for f in arg:
 			print(str(arg))
+			print("wat")
 			if os.path.isfile(arg):
 				fio = arg
 			else:
