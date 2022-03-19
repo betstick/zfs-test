@@ -84,7 +84,7 @@ def main(argv):
 							#print("fio " + fio)
 							fioOut = os.popen("fio " + fio)
 							results = fioOut.read()
-							for line in results:
+							for line in results.split():
 								if "read: IOPS=" in line:
 									print("//" + fullCreate)
 									print("\\\\" + line)
