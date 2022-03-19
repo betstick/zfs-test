@@ -34,8 +34,8 @@ def main(argv):
 					sys.exit("Device not found: " + d)
 		elif opt == "--fio=":
 			#for f in arg:
+			print(arg)
 			if os.path.isfile(arg):
-				print(arg)
 				fio = arg
 			else:
 				sys.exit("FIO config not found: " + arg)
