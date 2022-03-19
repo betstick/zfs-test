@@ -28,7 +28,7 @@ def main(argv):
 					sys.exit("Unkown pool mode: " + m)
 		elif opt == "--devices": #this won't work if devices are zpools :/
 			for d in arg.split(","):
-				if os.path.isfile(d):
+				if os.path.exists(d):
 					devices.append(d)
 				else:
 					sys.exit("Device not found: " + d)
