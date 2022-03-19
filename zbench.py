@@ -44,7 +44,7 @@ def main(argv):
 	if len(devices) < 1:
 		sys.exit("No devices specified!")
 	if os.path.exists(fio) != True:
-		sys.exit("FIO config not specified!")
+		sys.exit("FIO config not specified! " + fio)
 
 	print(zpoolModes)
 	print(devices)
