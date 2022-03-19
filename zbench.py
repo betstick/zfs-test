@@ -34,7 +34,7 @@ def main(argv):
 					sys.exit("Device not found: " + d)
 		elif opt == "--fio=":
 			#for f in arg:
-			print(arg)
+			print(str(arg))
 			if os.path.isfile(arg):
 				fio = arg
 			else:
