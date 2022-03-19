@@ -82,7 +82,9 @@ def main(argv):
 						os.system(fullCreate + " -f")
 						if os.path.exists("/flash/"):
 							print("fio " + fio)
-							results = os.popen("fio " + fio)
+							fioOut = os.popen("fio " + fio)
+							results = fioOut.read()
+							print(results)
 						#os.system(destroyCmd)
 
 	os.system(destroyCmd)
