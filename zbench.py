@@ -35,7 +35,7 @@ def main(argv):
 		elif opt == "--fio=":
 			#for f in arg:
 			if os.path.exists(f):
-				fio = arg
+				fio = arg[0]
 			else:
 				sys.exit("FIO config not found: " + f)
 
