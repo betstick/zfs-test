@@ -70,9 +70,9 @@ def main(argv):
 			for s in syncOpts:
 				for r in recSizeOpts:
 					for a2 in ashiftOpts:
-						fullCreate = createCmd + m
+						fullCreate = createCmd + m + " "
 						for d in devices:
-							fullCreate += d
+							fullCreate += d + " "
 						fullCreate += atime + a
 						fullCreate += sync + s
 						fullCreate += recSize + r
