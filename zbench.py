@@ -72,7 +72,7 @@ def main(argv):
 					for a2 in ashiftOpts:
 						fullCreate = createCmd + m
 						for d in devices:
-							fullCreate += + d
+							fullCreate += d
 						fullCreate += atime + a
 						fullCreate += sync + s
 						fullCreate += recSize + r
