@@ -82,7 +82,7 @@ def main(argv):
 						os.system(fullCreate + " -f")
 						if os.path.exists("/flash/"):
 							#print("fio " + fio)
-							print("echo // &&" + fullCreate + " | grep read: IOPS=")
+							print("echo // &&" + fullCreate + " | grep 'read: IOPS='")
 							os.system("fio " + fio)
 							#results = fioOut.read()
 							#for line in results.split():
