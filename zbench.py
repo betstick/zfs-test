@@ -69,6 +69,8 @@ def main(argv):
 			for s in syncOpts:
 				for r in recSizeOpts:
 					for a2 in ashiftOpts:
+						os.system(destroyCmd)
+						os.system("rm -rf /flash/")
 						fullCreate = createCmd + m + " "
 						for d in devices:
 							fullCreate += d + " "
