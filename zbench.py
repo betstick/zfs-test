@@ -34,7 +34,7 @@ def main(argv):
 					sys.exit("Device not found: " + d)
 		elif opt == "--fio=":
 			for f in arg:
-				if os.path.exists(f):
+				if os.path.isfile(f):
 					print(f)
 					fio = f
 				else:
@@ -44,7 +44,7 @@ def main(argv):
 		sys.exit("No modes specified!")
 	if len(devices) < 1:
 		sys.exit("No devices specified!")
-	if os.path.exists(fio) != True:
+	if os.path.isfile(fio) != True:
 		sys.exit("FIO config not specified! " + fio)
 
 	print(zpoolModes)
