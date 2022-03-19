@@ -32,10 +32,7 @@ def main(argv):
 					devices.append(d)
 				else:
 					sys.exit("Device not found: " + d)
-		elif opt == "--fio=":
-			#for f in arg:
-			print(str(arg))
-			print("wat")
+		elif opt == "--fio":
 			if os.path.isfile(arg):
 				fio = arg
 			else:
