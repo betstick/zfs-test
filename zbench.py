@@ -77,9 +77,10 @@ def main(argv):
 						fullCreate += sync + s
 						fullCreate += recSize + r
 						fullCreate += ashift + a2
-						print(fullCreate)
-						os.system(fullCreate)
+						#print(fullCreate)
+						os.system(fullCreate + " -f")
 						results = os.popen("fio " + fio)
+						os.system(destroyCmd)
 
 if __name__ == "__main__":
 	main(sys.argv[1:])
