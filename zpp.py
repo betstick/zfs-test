@@ -129,7 +129,7 @@ def main(argv):
 							result.append([m,l,str(j['disk_util'][0]['read_ios'])])
 
 					options = " atime=" + a + ", sync=" + s + ", recordsize=" + r + ", ashift=" + f
-					print(result + options)	
+					print(str(result) + options)	
 
 					#destroy the pool
 					os.system(destroy)

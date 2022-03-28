@@ -12,4 +12,4 @@ name=raw-randread
 rw=randread
 							
 [job1]
-filename=bench
+filename=/tank/bench
