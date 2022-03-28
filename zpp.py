@@ -93,4 +93,5 @@ def main(argv):
 						create += "-o ashift=" + f + " "
 
 if __name__ == "__main__":
+	print("test")
 	main(sys.argv[1:])
