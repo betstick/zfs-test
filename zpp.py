@@ -20,7 +20,7 @@ def main(argv):
 	atimeOpts = ["on","off"]
 	syncOpts = ["standard","disabled","always"]
 	recordsizeOpts = ["1k","2k","4k","8k","16k","32k","64k","128k"]
-	ashiftOpts = ["9","10","11","12","13"]
+	ashiftOpts = ["9","10","11","12","13","14","15","16","17"]
 
 	#selected options
 	atimeSel = []
