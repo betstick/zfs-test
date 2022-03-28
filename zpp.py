@@ -38,7 +38,7 @@ def main(argv):
 		"sync=",
 		"recordsize=",
 		"ashift=",
-		"path", #where the fio data goes
+		"path=",
 		"fio=",
 		"name="
 	])
