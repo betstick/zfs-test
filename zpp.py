@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import os, sys, getopt
+import os, sys, getopt, subprocess, json
 
 def simpleOptParse(opt,arg,opts,sel,name):
 	for a in arg.split(","):
@@ -9,6 +9,7 @@ def simpleOptParse(opt,arg,opts,sel,name):
 			sys.exit("Unkown " + name + " arg: " + a)
 
 def main(argv):
+
 	#disk layouts
 	layout = []
 
@@ -31,7 +32,7 @@ def main(argv):
 
 	#retreive the args
 	opts, args = getopt.getopt(argv,"",[
-		"layout="
+		"layout=",
 
 		"atime=",
 		"sync=",
@@ -45,18 +46,18 @@ def main(argv):
 	#processing arguments
 	for opt, arg in opts:
 		if opt == "--layout":
-			for a in arg.split(","):
-				if a in raidOpts:
-					layout.append(a)
+			for o in arg.split(","):
+				if o in raidOpts:
+					layout.append(o)
 				else:
-					if os.path.exists(a) == True:
-						layout.append(a)
+					if os.path.exists(o) == True:
+						layout.append(o)
 					else:
 						sys.exit("Device or mode not found: " + o)
 		elif opt == "--atime":
 			simpleOptParse(opt, arg, atimeOpts, atimeSel, "atime")
 		elif opt == "--sync":
-			simpleOptParse(opt, arg, atimeOpts, atimeSel, "sync")
+			simpleOptParse(opt, arg, syncOpts, syncSel, "sync")
 		elif opt == "--recordsize":
 			simpleOptParse(opt, arg, recordsizeOpts, recordsizeSel, "recordsize")
 		elif opt == "--ashift":
@@ -79,11 +80,25 @@ def main(argv):
 	#for l in layout:
 	#	create += l + " "
 
-	for a in atimeOpts:
-		for s in syncOpts:
-			for r in recordsizeOpts:
-				for f in ashiftOpts:
-					create = "zpool create " + name + " -f "
+	totalRuns = 0
+
+	for a in atimeSel:
+		for s in syncSel:
+			for r in recordsizeSel:
+				for f in ashiftSel:
+					totalRuns += 1
+	
+	run = 1
+
+	tests = ['fio-profs/iop/rand-read']
+
+	for a in atimeSel:
+		for s in syncSel:
+			for r in recordsizeSel:
+				for f in ashiftSel:
+					create = "zpool create "
+					for z in layout:
+						create += z + " "
 					if a in atimeSel:
 						create += "-O atime=" + a + " "
 					if s in syncSel:
@@ -93,9 +108,19 @@ def main(argv):
 					if f in ashiftSel:
 						create += "-o ashift=" + f + " "
 					
+					#print("Run: " + str(run) + " of " + str(totalRuns))
+					#run += 1
+					
+					#create the pool
 					print(create)
 
-	
+					for t in tests:
+						test_cmd = "fio " + t + " --output-format=json"
+						ret = subprocess.run([test_cmd],stdout=subprocess.PIPE,shell=True)
+						#print(ret)
+						j = json.loads(ret.stdout.decode('utf-8'))
+						for a in j['disk_util']:
+							print(a)
 
 if __name__ == "__main__":
 	print("test")
