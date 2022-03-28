@@ -29,6 +29,7 @@ def main(argv):
 	ashiftSel = []
 	fio = ""
 	name = ""
+	path = ""
 
 	#retreive the args
 	opts, args = getopt.getopt(argv,"",[
