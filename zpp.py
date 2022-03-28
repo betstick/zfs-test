@@ -72,7 +72,7 @@ def main(argv):
 					sys.exit("No fio template found! " + a)
 
 	#building blocks
-	create = "zpool create " + name + "-f "
+	create = "zpool create " + name + " -f "
 	destroy = "zpool destroy " + name
 	bench = "fio " + fio + " | grep 'read='" #confirm this
 
