@@ -101,7 +101,7 @@ def main(argv):
 		for s in syncSel:
 			for r in recordsizeSel:
 				for f in ashiftSel:
-					create = "zpool create "
+					create = "zpool create " + name + " "
 					for z in layout:
 						create += z + " "
 					if a in atimeSel:
