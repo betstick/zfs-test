@@ -38,7 +38,7 @@ def main(argv):
 		"sync=",
 		"recordsize=",
 		"ashift=",
-
+		"path", #where the fio data goes
 		"fio=",
 		"name="
 	])
@@ -65,6 +65,9 @@ def main(argv):
 		elif opt == "--name":
 			for a in arg.split(","):
 				name = a
+		elif opt == "--path":
+			for a in arg.split(","):
+				path = a
 		elif opt == "--fio":
 			for a in arg.split(","):
 				if os.path.isfile(a) == True:
@@ -119,7 +122,7 @@ def main(argv):
 					result = []
 					for m in modes:
 						for l in lengths:
-							test_cmd = "fio " + 'fio-profs/' + m + '/' + l + '-read' + " --output-format=json"
+							test_cmd = "fio " + 'fio-profs/' + m + '/' + l + '-read' + " --output-format=json --aux-path=" + path
 							ret = subprocess.run([test_cmd],stdout=subprocess.PIPE,shell=True)
 							j = json.loads(ret.stdout.decode('utf-8'))
 							result.append(m,l,[str(j['disk_util'][0]['read_ios'])])
