@@ -91,8 +91,10 @@ def main(argv):
 						create += "-O recordsize=" + r + " "
 					if f in ashiftSel:
 						create += "-o ashift=" + f + " "
+					
+					print(create)
 
-	print(create)
+	
 
 if __name__ == "__main__":
 	print("test")
