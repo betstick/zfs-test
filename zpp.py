@@ -72,17 +72,18 @@ def main(argv):
 					sys.exit("No fio template found! " + a)
 
 	#building blocks
-	create = "zpool create " + name + " -f "
+	#create = "zpool create " + name + " -f "
 	destroy = "zpool destroy " + name
 	bench = "fio " + fio + " | grep 'read='" #confirm this
 
-	for l in layout:
-		create += l + " "
+	#for l in layout:
+	#	create += l + " "
 
 	for a in atimeOpts:
 		for s in syncOpts:
 			for r in recordsizeOpts:
 				for f in ashiftOpts:
+					create = "zpool create " + name + " -f "
 					if a in atimeSel:
 						create += "-O atime=" + a + " "
 					if s in syncSel:
