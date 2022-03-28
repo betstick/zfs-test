@@ -126,7 +126,7 @@ def main(argv):
 							test_cmd = "fio " + 'fio-profs/' + m + '/' + l + '-read' + " --output-format=json --aux-path=" + path
 							ret = subprocess.run([test_cmd],stdout=subprocess.PIPE,shell=True)
 							j = json.loads(ret.stdout.decode('utf-8'))
-							result.append(m,l,[str(j['disk_util'][0]['read_ios'])])
+							result.append([m,l,str(j['disk_util'][0]['read_ios'])])
 
 					options = " atime=" + a + ", sync=" + s + ", recordsize=" + r + ", ashift=" + f
 					print(result + options)	
