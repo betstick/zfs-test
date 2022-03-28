@@ -96,3 +96,37 @@ def main(argv):
 
 if __name__ == "__main__":
 	main(sys.argv[1:])
+
+
+
+						test_cmd = "fio " + 'fio-profs/iop/rand-read' + " --output-format=json"
+					ret = subprocess.run([test_cmd],stdout=subprocess.PIPE,shell=True)
+					j = json.loads(ret.stdout.decode('utf-8'))
+					
+					r_rand_iops = str(j['disk_util'][0]['read_ios'])
+
+					test_cmd = "fio " + 'fio-profs/iop/rand-read' + " --output-format=json"
+					ret = subprocess.run([test_cmd],stdout=subprocess.PIPE,shell=True)
+					j = json.loads(ret.stdout.decode('utf-8'))
+
+					r_rand_tp = str(j['disk_util'][0]['read_ios'])
+
+					read_rand = ("Read IOPs: " +  r_rand_iops + " (4k), " + r_rand_tp + " (64k)")
+
+					#seq read tests
+					test_cmd = "fio " + 'fio-profs/iop/rand-read' + " --output-format=json"
+					ret = subprocess.run([test_cmd],stdout=subprocess.PIPE,shell=True)
+					j = json.loads(ret.stdout.decode('utf-8'))
+					
+					r_seq_iops = str(j['disk_util'][0]['read_ios'])
+
+					test_cmd = "fio " + 'fio-profs/iop/rand-read' + " --output-format=json"
+					ret = subprocess.run([test_cmd],stdout=subprocess.PIPE,shell=True)
+					j = json.loads(ret.stdout.decode('utf-8'))
+
+					r_seq_tp = str(j['disk_util'][0]['read_ios'])
+
+					read_seq = ("Read IOPs: " +  r_rand_iops + " (4k), " + r_rand_tp + " (64k)")
+
+
+					#print("Deep/seq: " + result[0] + " Deep/ran: " + result[1] + " Deep/seq: " + result[2] + " Shallow/seq: " + result[3])

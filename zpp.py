@@ -90,7 +90,8 @@ def main(argv):
 	
 	run = 1
 
-	tests = ['fio-profs/iop/rand-read']
+	modes = ['iop','thruput']
+	lengths = ['rand','seq']
 
 	for a in atimeSel:
 		for s in syncSel:
@@ -112,16 +113,23 @@ def main(argv):
 					#run += 1
 					
 					#create the pool
-					print(create)
+					os.system(create)
 
-					for t in tests:
-						test_cmd = "fio " + t + " --output-format=json"
-						ret = subprocess.run([test_cmd],stdout=subprocess.PIPE,shell=True)
-						#print(ret)
-						j = json.loads(ret.stdout.decode('utf-8'))
-						for a in j['disk_util']:
-							print(a)
+					#read tests
+					result = []
+					for m in modes:
+						for l in lengths:
+							test_cmd = "fio " + 'fio-profs/' + m + '/' + l + '-read' + " --output-format=json"
+							ret = subprocess.run([test_cmd],stdout=subprocess.PIPE,shell=True)
+							j = json.loads(ret.stdout.decode('utf-8'))
+							result.append(m,l,[str(j['disk_util'][0]['read_ios'])])
+
+					options = " atime=" + a + ", sync=" + s + ", recordsize=" + r + ", ashift=" + f
+					print(result + options)	
+
+					#destroy the pool
+					os.system(destroy)
+
 
 if __name__ == "__main__":
-	print("test")
 	main(sys.argv[1:])
