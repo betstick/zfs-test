@@ -126,7 +126,7 @@ def main(argv):
 							test_cmd = "fio " + 'fio-profs/' + m + '/' + l + '-read' + " --output-format=json --filename=" + path
 							ret = subprocess.run([test_cmd],stdout=subprocess.PIPE,shell=True)
 							j = json.loads(ret.stdout.decode('utf-8'))
-							result.append([m,l,str(j['jobs'][0]['read']['iops']),str(j['jobs'][0]['read']['io_bytes']/1000000)+"MBps"])
+							result.append([m,l,str(math. trunc(j['jobs'][0]['read']['iops'])),str(math. trunc(j['jobs'][0]['read']['io_bytes']/1000000))+"MBps"])
 
 					options = " atime=" + a + ", sync=" + s + ", recordsize=" + r + ", ashift=" + f
 					print(str(result) + options)	
