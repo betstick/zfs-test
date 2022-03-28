@@ -92,6 +92,8 @@ def main(argv):
 					if f in ashiftSel:
 						create += "-o ashift=" + f + " "
 
+	print(create)
+
 if __name__ == "__main__":
 	print("test")
 	main(sys.argv[1:])
