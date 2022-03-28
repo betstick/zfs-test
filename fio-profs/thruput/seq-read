@@ -12,4 +12,3 @@ name=raw-read
 rw=read
 							
 [job1]
-filename=/tank/bench
