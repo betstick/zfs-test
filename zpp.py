@@ -123,7 +123,7 @@ def main(argv):
 					result = []
 					for m in modes:
 						for l in lengths:
-							test_cmd = "fio " + 'fio-profs/' + m + '/' + l + '-read' + " --output-format=json --aux-path=" + path
+							test_cmd = "fio " + 'fio-profs/' + m + '/' + l + '-read' + " --output-format=json"
 							ret = subprocess.run([test_cmd],stdout=subprocess.PIPE,shell=True)
 							j = json.loads(ret.stdout.decode('utf-8'))
 							result.append([m,l,str(j['disk_util'][0]['read_ios'])])
